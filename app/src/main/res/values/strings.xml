@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Alaska Quiz</string>
+    <string name="introduction">Welcome to the Alaska Quiz!  I grew up in Alaska.  When I moved to the East Coast of the United States, I got asked some very interesting questions about my home state.  Following are some of those real questions with the correct answers.</string>
+    <string name="ques1">Alaska is part of which country?"</string>
+        <string name="ques1a">Russia</string>
+        <string name="ques1b">Canada</string>
+        <string name="ques1c">United States</string>
+        <string name="ques1d">None of the Above</string>
+    <string name="ques2">True of False: Most Alaskans have electricity?</string>
+    <string name="ques3">True of False: Most Alaskans have indoor plumbing?</string>
+    <string name="ques4">True of False: The main mode of transportation is dog sledding?</string>
+    <string name="ques5">True of False: It snows all year long?</string>
+    <string name="intro2">These questions are just some trivia about the "last frontier" so that I can experiment with other input types:</string>
+    <string name="ques6">How many lakes are there in Alaska over 20 acres in size (Guess to within 100K)?</string>
+    <string name="ques7">Which state in the United States is larger than Alaska?</string>
+        <string name="ques7a">Texas</string>
+        <string name="ques7b">California</string>
+        <string name="ques7c">Rhode Island</string>
+        <string name="ques7d">None of the Above</string>
+    <string name="ques8">Select the top 3 industries:</string>
+        <string name="ques8a">Timber</string>
+        <string name="ques8b">Tourism</string>
+        <string name="ques8c">Whaling</string>
+        <string name="ques8d">Petroleum</string>
+        <string name="ques8e">Mining</string>
+        <string name="ques8f">Fishing</string>
+    <string name="ques9">Which is the Alaskan State Bird:</string>
+        <string name="ques9a">Bald Eagle</string>
+        <string name="ques9b">Mosquito</string>
+        <string name="ques9c">Ptarmigan</string>
+        <string name="ques9d">Raven   </string>
+    <string name="submit">Submit Answers</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="alaskan_flag">Alaskan Flag</string>
+    <string name="sfalse">False</string>
+    <string name="strue">True</string>
+</resources>

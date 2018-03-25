@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pad_bottom">24dp</dimen>
+    <dimen name="pad_horizontal">20dp</dimen>
+    <dimen name="title_size">45sp</dimen>
+    <dimen name="layout_height">275dp</dimen>
+    <dimen name="line_width">1dp</dimen>
+    <dimen name="img_radio_button_pad">2dp</dimen>
+</resources>
