@@ -3,8 +3,8 @@ package com.example.android.alaskaquiz;
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +21,7 @@ import java.util.BitSet;
 public class MainActivity extends AppCompatActivity {
     final static int CHECKBOX_ANSWER = 7;
     final static int NUMBER_OF_LAKES = 3000000;
+    final static int LOW_LAKES_ANSWER = 1000000;
     final static int QUESTION_6_RANGE = 100000;
     int[] answerKey = new int[9];
     BitSet answerBitSet = new BitSet();
@@ -60,31 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
             myView = myLayout.getChildAt(i);
             if (myView instanceof RadioGroup) {
+                clearLeftDrawable(myView);
                 quesVal = checkRadioGroup(myView);
                 correctAnswers += checkAnswer(myView, quesVal);
             } else if (myView instanceof EditText) {
+                clearLeftDrawable(myView);
                 quesVal = checkEditText(myView);
                 correctAnswers += checkAnswer(myView, quesVal);
-            } else if (myView instanceof CheckBox)
+            } else if (myView instanceof CheckBox) {
+                clearLeftDrawable(myView);
                 checkCheckBox(myView);
+            }
         }
 
-        //Process CheckBox answers
-        quesVal = bitSetToInt(answerBitSet);
-        TextView tv = findViewById(R.id.ques8);
-        Drawable[] drawables = tv.getCompoundDrawables();    //Preserve existing drawables
-        if (quesVal == answerKey[CHECKBOX_ANSWER]) {
-            correctAnswers += 1;
-            Log.i(this.getPackageName(), "The checkboxes were correct quesVal=" + quesVal + "=" + answerKey[CHECKBOX_ANSWER] + "  correct answers=" + correctAnswers);
-            Drawable img = this.getResources().getDrawable(R.drawable.check);
-            tv.setCompoundDrawablesWithIntrinsicBounds(img, drawables[1],
-                    drawables[2], drawables[3]);
-        } else {
-            Log.i(this.getPackageName(), "The checkboxes were incorrect quesVal=" + quesVal + "=" + answerKey[CHECKBOX_ANSWER] + "  correct answers=" + correctAnswers);
-            Drawable img = this.getResources().getDrawable(R.drawable.x);
-            tv.setCompoundDrawablesWithIntrinsicBounds(img, drawables[1],
-                    drawables[2], drawables[3]);
-        }
+        correctAnswers += checkCheckBoxAnswer();
 
         String bread = "You got " + correctAnswers + " out of " + answerKey.length + " correct!";
         Toast.makeText(getApplicationContext(), bread, Toast.LENGTH_LONG).show();
@@ -147,6 +137,28 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+
+    private int checkCheckBoxAnswer() {
+        //Process CheckBox answers
+        int result = 0;
+        int quesVal = bitSetToInt(answerBitSet);
+        TextView tv = findViewById(R.id.ques8);
+        Drawable[] drawables = tv.getCompoundDrawables();    //Preserve existing drawables
+        if (quesVal == answerKey[CHECKBOX_ANSWER]) {
+            result = 1;
+            Drawable img = this.getResources().getDrawable(R.drawable.check);
+            tv.setCompoundDrawablesWithIntrinsicBounds(img, drawables[1],
+                    drawables[2], drawables[3]);
+            Log.i(this.getPackageName(),"checkCheckbox ans correct " + answerBitSet.toString());
+        } else {
+            Drawable img = this.getResources().getDrawable(R.drawable.x);
+            tv.setCompoundDrawablesWithIntrinsicBounds(img, drawables[1],
+                    drawables[2], drawables[3]);
+            Log.i(this.getPackageName(),"checkCheckbox ans not correct  " + answerBitSet.toString());
+        }
+        return result;
+    }
+
     /**
      * checkRadioGroup is a helper function to process RadioGroup answers.
      * Locates which question the radio group is associated with,
@@ -177,17 +189,19 @@ public class MainActivity extends AppCompatActivity {
         Editable editEt6 = et6.getText();
         String strEt6 = editEt6.toString();
         int quesVal = -1;
+        TextView errorText = findViewById(R.id.et6_error);
+        errorText.setText("");
         try {
             quesVal = Integer.parseInt(strEt6);
+            if (Math.abs(quesVal - NUMBER_OF_LAKES) <= QUESTION_6_RANGE)  // Round to correct answer if within the bounds.
+                quesVal = NUMBER_OF_LAKES;
+            else if (quesVal < LOW_LAKES_ANSWER) {
+                errorText.setText("Google the answer. It's much larger than that.");
+            }
         } catch (NumberFormatException e) {
             quesVal = 0;
-            TextView errorText = findViewById(R.id.et6_error);
-            errorText.layout(20, 0, 20, 0);
-            errorText.setText("Answer must be a number.  Found '" + strEt6 + "'");
+            errorText.setText("Answer must be a number.\nFound '" + strEt6 + "'");
         }
-        Log.i(this.getPackageName(), "Edit Text=" + strEt6);
-        if (Math.abs(quesVal - NUMBER_OF_LAKES) <= QUESTION_6_RANGE)  // Round to correct answer if within the bounds.
-            quesVal = NUMBER_OF_LAKES;
         return quesVal;
     }
 
@@ -206,7 +220,9 @@ public class MainActivity extends AppCompatActivity {
             CheckBox cb = (CheckBox) view;
             if (cb.isChecked())
                 answerBitSet.set(quesCheckBoxId);
-            Log.i(this.getPackageName(), "correct checkCheckBox ID=" + quesCheckBoxId + " new value =" + bitSetToInt(answerBitSet));
+            else
+                answerBitSet.clear(quesCheckBoxId);
+            Log.i(this.getPackageName(), "correct checkCheckBox ID=" + quesCheckBoxId + " is checked=" + cb.isChecked() + " new value =" + bitSetToInt(answerBitSet));
         } catch (IllegalStateException ise) {
             Log.i(this.getPackageName(), "Not a view we are interested in.");
         } catch (Resources.NotFoundException rnfe) {
@@ -249,6 +265,32 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * clearLeftDrawable: helper method to clear drawables before grading the answer
+     * @param view the view from which the drawable will be cleared.
+     */
+    private void clearLeftDrawable(View view) {
+        if (view instanceof RadioGroup) {
+            //loop through buttones and claer em
+            RadioGroup rg = (RadioGroup) view;
+            int rgCnt = rg.getChildCount();
+            for (int j = 0; j < rgCnt; j++) {
+                View v = rg.getChildAt(j);
+                if (v instanceof RadioButton) {
+                    TextView tv = (RadioButton) v;
+                    Drawable[] drawables = tv.getCompoundDrawables();    //Preserve existing drawables
+                    tv.setCompoundDrawablesWithIntrinsicBounds(null, drawables[1],
+                            drawables[2], drawables[3]);
+                }
+            }
+        } else {
+            TextView tv = (TextView) view;
+            Drawable[] drawables = tv.getCompoundDrawables();    //Preserve existing drawables
+            tv.setCompoundDrawablesWithIntrinsicBounds(null, drawables[1],
+                    drawables[2], drawables[3]);
         }
     }
 

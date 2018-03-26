@@ -278,7 +278,7 @@
         <TextView
             android:id="@+id/et6_error"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="20dp"
             android:paddingEnd="@dimen/pad_horizontal"
             android:paddingLeft="@dimen/pad_horizontal"
             android:paddingRight="@dimen/pad_horizontal"
@@ -432,8 +432,8 @@
                 android:id="@+id/ques9A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@drawable/bald_eagle"
-                android:drawableEnd="@drawable/bald_eagle"
+                android:drawableRight="@drawable/penquin"
+                android:drawableEnd="@drawable/penquin"
                 android:text="@string/ques9a" />
 
             <RadioButton
@@ -458,14 +458,10 @@
                 android:id="@+id/ques9D"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@drawable/raven"
-                android:paddingStart="@dimen/img_radio_button_pad"
-                android:paddingRight="@dimen/img_radio_button_pad"
-                android:paddingEnd="@dimen/img_radio_button_pad"
-                android:paddingLeft="@dimen/img_radio_button_pad"
+                android:drawableRight="@drawable/puffin"
+                android:drawableEnd="@drawable/puffin"
                 android:text="@string/ques9d"
-
-                android:drawableEnd="@drawable/raven" />
+ />
 
         </RadioGroup>
 

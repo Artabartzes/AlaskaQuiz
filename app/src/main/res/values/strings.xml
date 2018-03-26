@@ -25,10 +25,10 @@
         <string name="ques8e">Mining</string>
         <string name="ques8f">Fishing</string>
     <string name="ques9">Which is the Alaskan State Bird:</string>
-        <string name="ques9a">Bald Eagle</string>
-        <string name="ques9b">Mosquito</string>
-        <string name="ques9c">Ptarmigan</string>
-        <string name="ques9d">Raven   </string>
+        <string name="ques9a"></string>
+        <string name="ques9b"></string>
+        <string name="ques9c"></string>
+        <string name="ques9d"> </string>
     <string name="submit">Submit Answers</string>
     <string name="enter_a_number">Enter a number</string>
     <string name="alaskan_flag">Alaskan Flag</string>
