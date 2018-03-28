@@ -188,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         EditText et6 = (EditText) view;
         Editable editEt6 = et6.getText();
         String strEt6 = editEt6.toString();
+        strEt6 = strEt6.replace(",","");
         int quesVal = -1;
         TextView errorText = findViewById(R.id.et6_error);
         errorText.setText("");

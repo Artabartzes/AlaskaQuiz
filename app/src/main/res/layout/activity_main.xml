@@ -73,10 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
+            android:paddingEnd="@dimen/pad_horizontal"
             android:paddingLeft="@dimen/pad_horizontal"
-            android:paddingStart="@dimen/pad_horizontal"
             android:paddingRight="@dimen/pad_horizontal"
-            android:paddingEnd="@dimen/pad_horizontal">
+            android:paddingStart="@dimen/pad_horizontal">
 
             <RadioButton
                 android:id="@+id/ques1A"
@@ -120,9 +120,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
+            android:paddingEnd="@dimen/pad_horizontal"
             android:paddingLeft="@dimen/pad_horizontal"
             android:paddingRight="@dimen/pad_horizontal"
-            android:paddingEnd="@dimen/pad_horizontal"
             android:paddingStart="@dimen/pad_horizontal">
 
             <RadioButton
@@ -155,10 +155,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
-            android:paddingLeft="@dimen/pad_horizontal"
-            android:paddingStart="@dimen/pad_horizontal"
-            android:paddingRight="@dimen/pad_horizontal"
             android:paddingEnd="@dimen/pad_horizontal"
+            android:paddingLeft="@dimen/pad_horizontal"
+            android:paddingRight="@dimen/pad_horizontal"
+            android:paddingStart="@dimen/pad_horizontal"
 
             >
 
@@ -192,11 +192,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
-            android:paddingLeft="@dimen/pad_horizontal"
-            android:paddingStart="@dimen/pad_horizontal"
-            android:paddingRight="@dimen/pad_horizontal"
             android:paddingEnd="@dimen/pad_horizontal"
-            >
+            android:paddingLeft="@dimen/pad_horizontal"
+            android:paddingRight="@dimen/pad_horizontal"
+            android:paddingStart="@dimen/pad_horizontal">
 
             <RadioButton
                 android:id="@+id/ques4A"
@@ -228,11 +227,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
-            android:paddingLeft="@dimen/pad_horizontal"
-            android:paddingStart="@dimen/pad_horizontal"
-            android:paddingRight="@dimen/pad_horizontal"
             android:paddingEnd="@dimen/pad_horizontal"
-            >
+            android:paddingLeft="@dimen/pad_horizontal"
+            android:paddingRight="@dimen/pad_horizontal"
+            android:paddingStart="@dimen/pad_horizontal">
 
             <RadioButton
                 android:id="@+id/ques5A"
@@ -313,11 +311,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
-            android:paddingLeft="@dimen/pad_horizontal"
-            android:paddingStart="@dimen/pad_horizontal"
-            android:paddingRight="@dimen/pad_horizontal"
             android:paddingEnd="@dimen/pad_horizontal"
-            >
+            android:paddingLeft="@dimen/pad_horizontal"
+            android:paddingRight="@dimen/pad_horizontal"
+            android:paddingStart="@dimen/pad_horizontal">
 
             <RadioButton
                 android:id="@+id/ques7A"
@@ -422,58 +419,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/pad_bottom"
-            android:paddingLeft="@dimen/pad_horizontal"
-            android:paddingStart="@dimen/pad_horizontal"
-            android:paddingRight="@dimen/pad_horizontal"
             android:paddingEnd="@dimen/pad_horizontal"
-            >
+            android:paddingLeft="@dimen/pad_horizontal"
+            android:paddingRight="@dimen/pad_horizontal"
+            android:paddingStart="@dimen/pad_horizontal">
 
             <RadioButton
                 android:id="@+id/ques9A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@drawable/penquin"
                 android:drawableEnd="@drawable/penquin"
+                android:drawableRight="@drawable/penquin"
                 android:text="@string/ques9a" />
 
             <RadioButton
                 android:id="@+id/ques9B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/mosquito"
                 android:drawableLeft="@drawable/x"
                 android:drawableRight="@drawable/mosquito"
-                android:drawableEnd="@drawable/mosquito"
                 android:text="@string/ques9b" />
 
             <RadioButton
                 android:id="@+id/ques9C"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/willow_ptarmigan"
                 android:drawableLeft="@drawable/check"
                 android:drawableRight="@drawable/willow_ptarmigan"
-                android:drawableEnd="@drawable/willow_ptarmigan"
                 android:text="@string/ques9c" />
 
             <RadioButton
                 android:id="@+id/ques9D"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@drawable/puffin"
                 android:drawableEnd="@drawable/puffin"
-                android:text="@string/ques9d"
- />
+                android:drawableRight="@drawable/puffin"
+                android:text="@string/ques9d" />
+
+            <RadioButton
+                android:id="@+id/ques9E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/arctic_tern"
+                android:drawableRight="@drawable/arctic_tern" />
 
         </RadioGroup>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="@dimen/pad_horizontal"
-            android:layout_marginLeft="@dimen/pad_horizontal"
             android:layout_marginBottom="@dimen/pad_bottom"
-            android:text="@string/submit"
-            android:onClick="onSubmit"/>
+            android:layout_marginLeft="@dimen/pad_horizontal"
+            android:layout_marginRight="@dimen/pad_horizontal"
+            android:layout_marginTop="16dp"
+            android:onClick="onSubmit"
+            android:text="@string/submit" />
 
     </LinearLayout>
 </ScrollView>
