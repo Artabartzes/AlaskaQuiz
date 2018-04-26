@@ -35,4 +35,6 @@
     <string name="alaskan_flag">Alaskan Flag</string>
     <string name="sfalse">False</string>
     <string name="strue">True</string>
+    <string name="ques6_number_exception">Answer must be a number. Found \'%1$s\'</string>
+    <string name="ques_ans_too_small">Google the answer. It\'s much larger than that.</string>
 </resources>

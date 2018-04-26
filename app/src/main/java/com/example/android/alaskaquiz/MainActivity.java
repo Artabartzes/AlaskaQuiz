@@ -26,6 +26,21 @@ public class MainActivity extends AppCompatActivity {
     int[] answerKey = new int[9];
     BitSet answerBitSet = new BitSet();
 
+    /**
+     * Copied from st0le of https://stackoverflow.com/users/216517/st0le
+     * Found at https://stackoverflow.com/questions/4873952/convert-bitset-to-int
+     *
+     * @param bitSet: the BitSet to be converted to an integer
+     * @return bitInteger: the value of the BitSet as an integer
+     */
+    private static int bitSetToInt(BitSet bitSet) {
+        int bitInteger = 0;
+        for (int i = 0; i < 32; i++)
+            if (bitSet.get(i))
+                bitInteger |= (1 << i);
+        return bitInteger;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-
     private int checkCheckBoxAnswer() {
         //Process CheckBox answers
         int result = 0;
@@ -149,12 +163,12 @@ public class MainActivity extends AppCompatActivity {
             Drawable img = this.getResources().getDrawable(R.drawable.check);
             tv.setCompoundDrawablesWithIntrinsicBounds(img, drawables[1],
                     drawables[2], drawables[3]);
-            Log.i(this.getPackageName(),"checkCheckbox ans correct " + answerBitSet.toString());
+            Log.i(this.getPackageName(), "checkCheckbox ans correct " + answerBitSet.toString());
         } else {
             Drawable img = this.getResources().getDrawable(R.drawable.x);
             tv.setCompoundDrawablesWithIntrinsicBounds(img, drawables[1],
                     drawables[2], drawables[3]);
-            Log.i(this.getPackageName(),"checkCheckbox ans not correct  " + answerBitSet.toString());
+            Log.i(this.getPackageName(), "checkCheckbox ans not correct  " + answerBitSet.toString());
         }
         return result;
     }
@@ -170,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
     private int checkRadioGroup(View view) {
         RadioGroup rg = (RadioGroup) view;
         int quesVal = rg.getCheckedRadioButtonId();
-//        RadioButton btn = (RadioButton) rg.getChildAt(quesVal);
         Log.i(this.getPackageName(), view.toString() + " has a value of " + quesVal); //+ " " + btn.getText().toString());
         return quesVal;
     }
@@ -188,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         EditText et6 = (EditText) view;
         Editable editEt6 = et6.getText();
         String strEt6 = editEt6.toString();
-        strEt6 = strEt6.replace(",","");
+        strEt6 = strEt6.replace(",", "");
         int quesVal = -1;
         TextView errorText = findViewById(R.id.et6_error);
         errorText.setText("");
@@ -197,11 +210,12 @@ public class MainActivity extends AppCompatActivity {
             if (Math.abs(quesVal - NUMBER_OF_LAKES) <= QUESTION_6_RANGE)  // Round to correct answer if within the bounds.
                 quesVal = NUMBER_OF_LAKES;
             else if (quesVal < LOW_LAKES_ANSWER) {
-                errorText.setText("Google the answer. It's much larger than that.");
+                errorText.setText(R.string.ques_ans_too_small);
             }
         } catch (NumberFormatException e) {
             quesVal = 0;
-            errorText.setText("Answer must be a number.\nFound '" + strEt6 + "'");
+            String message = getApplicationContext().getString(R.string.ques6_number_exception, strEt6);
+            errorText.setText(message);
         }
         return quesVal;
     }
@@ -271,11 +285,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * clearLeftDrawable: helper method to clear drawables before grading the answer
+     *
      * @param view the view from which the drawable will be cleared.
      */
     private void clearLeftDrawable(View view) {
         if (view instanceof RadioGroup) {
-            //loop through buttones and claer em
+            //loop through buttons and clear them
             RadioGroup rg = (RadioGroup) view;
             int rgCnt = rg.getChildCount();
             for (int j = 0; j < rgCnt; j++) {
@@ -293,20 +308,5 @@ public class MainActivity extends AppCompatActivity {
             tv.setCompoundDrawablesWithIntrinsicBounds(null, drawables[1],
                     drawables[2], drawables[3]);
         }
-    }
-
-    /**
-     * Copied from st0le of https://stackoverflow.com/users/216517/st0le
-     * Found at https://stackoverflow.com/questions/4873952/convert-bitset-to-int
-     *
-     * @param bitSet: the BitSet to be converted to an integer
-     * @return bitInteger: the value of the BitSet as an integer
-     */
-    private static int bitSetToInt(BitSet bitSet) {
-        int bitInteger = 0;
-        for (int i = 0; i < 32; i++)
-            if (bitSet.get(i))
-                bitInteger |= (1 << i);
-        return bitInteger;
     }
 }
