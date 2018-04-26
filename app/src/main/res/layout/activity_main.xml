@@ -292,6 +292,7 @@
             android:layout_marginRight="@dimen/pad_horizontal"
             android:layout_marginTop="@dimen/pad_horizontal"
             android:hint="@string/enter_a_number"
+            android:inputType="number"
             android:maxLength="20"
             android:singleLine="true" />
 
@@ -437,7 +438,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/mosquito"
-                android:drawableLeft="@drawable/x"
                 android:drawableRight="@drawable/mosquito"
                 android:text="@string/ques9b" />
 
@@ -446,7 +446,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/willow_ptarmigan"
-                android:drawableLeft="@drawable/check"
                 android:drawableRight="@drawable/willow_ptarmigan"
                 android:text="@string/ques9c" />
 
